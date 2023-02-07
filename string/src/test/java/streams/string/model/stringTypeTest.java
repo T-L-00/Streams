@@ -1,6 +1,7 @@
 package streams.string.model;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 public class stringTypeTest {
 
@@ -32,7 +34,7 @@ public class stringTypeTest {
         watch.stop();
 
         assertNotNull(newList);
-        System.out.println("Total execution time to filter items with multi filter parallel stream with Predicates: " + watch.getTotalTimeSeconds());
+        log.info("Total execution time to filter items: " + watch.getTotalTimeSeconds());
     }
 
     @Test
@@ -44,6 +46,7 @@ public class stringTypeTest {
                 .collect(Collectors.toList());
 
         assertNotNull(list);
+        log.info("Total execution time to filter items with multiple filter: " + watch.getTotalTimeSeconds());
     }
 
     @Test
@@ -58,5 +61,6 @@ public class stringTypeTest {
         watch.stop();
 
         assertNotNull(parallelList);
+        log.info("Total execution time to filter items with parallel filter : " + watch.getTotalTimeSeconds());
     }
 }
